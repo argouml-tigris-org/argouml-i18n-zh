@@ -36,9 +36,7 @@ argouml/build/argouml.jar
 argouml/build/argouml-model.jar
 argouml/build/log4j.jar
 etc.
-  -->
-
-<project basedir="." default="compile" name="ArgoUML Chinese localization">
+  --><project basedir="." default="compile" name="ArgoUML Chinese localization">
   <!-- =================================================================== -->
   <!-- Initialization target                                               -->
   <!-- =================================================================== -->
@@ -62,16 +60,10 @@ etc.
   <!-- =================================================================== -->
   <!-- Run from classes                                                    -->
   <!-- =================================================================== -->
-  <target name="run" depends="init"
-          description="Run with this module.">
-    <java classname="org.argouml.application.Main"
-          fork="yes"
-          taskname="argouml"
-     	  jvmargs="-Xmx500M">
-        <sysproperty key="log4j.configuration"
-                   value="org/argouml/resource/error_console.lcf"/>
-        <sysproperty key="user.language"
-                   value="zh"/>
+  <target depends="init" description="Run with this module." name="run">
+    <java classname="org.argouml.application.Main" fork="yes" jvmargs="-Xmx500M" taskname="argouml">
+        <sysproperty key="log4j.configuration" value="org/argouml/resource/error_console.lcf"/>
+        <sysproperty key="user.language" value="zh"/>
         <classpath>
 	  <pathelement location="src"/>
 	  <path refid="run.classpath"/>
@@ -82,21 +74,50 @@ etc.
   <!-- =================================================================== -->
   <!-- Creates the jar file                                                -->
   <!-- =================================================================== -->
-  <target name="jar" depends="init"
-          description="Build the ${result.jar} file.">
+  <target depends="init" description="Build the ${result.jar} file." name="jar">
     <mkdir dir="${build.dir}"/>
-    <jar basedir="src"
-	 includes="org/argouml/**"
-	 jarfile="${build.dir}/${result.jar}"/>
+    <jar basedir="src" includes="org/argouml/**" jarfile="${build.dir}/${result.jar}"/>
   </target>
 
   <!-- =================================================================== -->
   <!-- Clean targets                                                       -->
   <!-- =================================================================== -->
-  <target name="clean" depends="init"
-          description="Clean out all built files.">
+  <target depends="init" description="Clean out all built files." name="clean">
     <delete quiet="true">
       <fileset dir="${build.dir}" includes="${result.jar}"/>
     </delete>
-  </target>
+     <!--  clean the english property file-->
+     <delete>
+       <fileset dir="src/org/argouml/i18n" excludes="**_zh**"/>
+     </delete>
+     <delete>
+       <fileset dir="${argo.root.dir}/src_new/org/argouml/i18n" includes="**_zh**"/>
+     </delete>
+       
+    </target>
+  
+  <!-- =========================++++++++++++========================================== -->
+  <!-- Update source properties                                                                                                                       -->
+  <!-- Move the properties file from  argouml/src_new/org/argouml/i18n/*.properties                                      -->
+  <!--                                          to   argouml-i18n-zn/src_new/org/argouml/i18n/*.properties      locally         -->
+  <!-- then we can catch up with the latest developement                                                                               -->
+  <!-- =============================================================================== -->
+    <target depends="init" name="reNewSource" description="move english to local, be the reference">
+
+        <copy overwrite="true" todir="src\org\argouml\i18n">
+            <fileset dir="${argo.root.dir}/src_new/org/argouml/i18n">
+                <include name="*.properties"/>
+            </fileset>
+        </copy>
+  
+    </target>
+    <target depends="init" name="patch_zh" description="patch zh properties to main project">
+       <copy overwrite="true" todir="${argo.root.dir}/src_new/org/argouml/i18n">
+         <fileset dir="src/org/argouml/i18n">
+          <include name="*_zh**"/>
+         </fileset>
+        </copy>
+    </target>
+      
+    
 </project>
