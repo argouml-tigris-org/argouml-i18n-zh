@@ -80,6 +80,16 @@ etc.
   </target>
 
   <!-- =================================================================== -->
+  <!-- Install the jar file                                                -->
+  <!-- =================================================================== -->
+  <target name="install" depends="jar"
+          description="Copy the ${result.jar} file to the ArgoUML directory.">
+    <copy todir="${argo.build.dir}/ext">
+      <fileset dir="${build.dir}" includes="${result.jar}"/>
+    </copy>
+  </target>
+
+  <!-- =================================================================== -->
   <!-- Clean targets                                                       -->
   <!-- =================================================================== -->
   <target depends="init" description="Clean out all built files." name="clean">
