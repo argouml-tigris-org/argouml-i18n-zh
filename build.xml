@@ -93,41 +93,6 @@ etc.
   <!-- Clean targets                                                       -->
   <!-- =================================================================== -->
   <target depends="init" description="Clean out all built files." name="clean">
-    <delete quiet="true">
-      <fileset dir="${build.dir}" includes="${result.jar}"/>
-    </delete>
-     <!--  clean the english property file-->
-     <delete>
-       <fileset dir="src/org/argouml/i18n" excludes="**_zh**"/>
-     </delete>
-     <delete>
-       <fileset dir="${argo.root.dir}/src_new/org/argouml/i18n" includes="**_zh**"/>
-     </delete>
-       
-    </target>
-  
-  <!-- =========================++++++++++++========================================== -->
-  <!-- Update source properties                                                                                                                       -->
-  <!-- Move the properties file from  argouml/src_new/org/argouml/i18n/*.properties                                      -->
-  <!--                                          to   argouml-i18n-zn/src_new/org/argouml/i18n/*.properties      locally         -->
-  <!-- then we can catch up with the latest developement                                                                               -->
-  <!-- =============================================================================== -->
-    <target depends="init" name="reNewSource" description="move english to local, be the reference">
-
-        <copy overwrite="true" todir="src\org\argouml\i18n">
-            <fileset dir="${argo.root.dir}/src_new/org/argouml/i18n">
-                <include name="*.properties"/>
-            </fileset>
-        </copy>
-  
-    </target>
-    <target depends="init" name="patch_zh" description="patch zh properties to main project">
-       <copy overwrite="true" todir="${argo.root.dir}/src_new/org/argouml/i18n">
-         <fileset dir="src/org/argouml/i18n">
-          <include name="*_zh**"/>
-         </fileset>
-        </copy>
-    </target>
-      
-    
+    <delete dir="${build.dir}"/>
+  </target>
 </project>
