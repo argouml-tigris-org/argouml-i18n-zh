@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- $Id$
-// Copyright (c) 2005 The Regents of the University of California. All
+// Copyright (c) 2005-2009 The Regents of the University of California. All
 // Rights Reserved. Permission to use, copy, modify, and distribute this
 // software and its documentation without fee, and without a written
 // agreement is hereby granted, provided that the above copyright notice
@@ -36,7 +36,8 @@ argouml/build/argouml.jar
 argouml/build/argouml-model.jar
 argouml/build/log4j.jar
 etc.
-  --><project basedir="." default="compile" name="ArgoUML Chinese localization">
+-->
+<project basedir="." default="run" name="ArgoUML Chinese localization">
   <!-- =================================================================== -->
   <!-- Initialization target                                               -->
   <!-- =================================================================== -->
@@ -47,7 +48,7 @@ etc.
     <property name="deprecation" value="yes"/>
     <property name="optimize" value="yes"/>
 
-    <property name="argo.root.dir" value="../argouml"/>
+    <property name="argo.root.dir" value="../argouml-app"/>
     <property name="argo.build.dir" value="${argo.root.dir}/build"/>
 
     <property name="result.jar" value="argouml-i18n-zh.jar"/>
