@@ -66,7 +66,7 @@ etc.
 			<sysproperty key="log4j.configuration" value="org/argouml/resource/error_console.lcf" />
 			<sysproperty key="user.language" value="zh" />
 			<classpath>
-				<pathelement location="src" />
+				<pathelement location="${argo.build.dir}" />
 				<path refid="run.classpath" />
 			</classpath>
 		</java>
@@ -104,8 +104,8 @@ etc.
 
 	<!-- =========================++++++++++++========================================== -->
 	<!-- Update source properties                                                        -->
-	<!-- Move the properties file from  argouml/src_new/org/argouml/i18n/*.properties    -->
-	<!-- to   argouml-zn-cn/src/org/argouml/i18n/*.properties      locally               -->
+	<!-- Move the properties file from argouml-app/src_new/org/argouml/i18n/*.properties -->
+	<!-- to   argouml-i18n-zh/src/org/argouml/i18n/*.properties      locally             -->
 	<!-- then we can catch up with the latest developement                               -->
 	<!-- =============================================================================== -->
 	<target depends="init" name="update_en_src" description="move english to local, be the reference">
@@ -124,7 +124,7 @@ etc.
 		</copy>
 	</target>
 
-	<!-- ================================= target: patchAndRun ================================= -->
+	<!-- ================================= target: patch_and_run ================================= -->
 	<target name="patch_and_run" depends="patch_zh,run" description="--> patch to main project and run">
 	</target>
 </project>
