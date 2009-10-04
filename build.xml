@@ -48,7 +48,7 @@ etc.
 		<property name="deprecation" value="yes" />
 		<property name="optimize" value="yes" />
 
-		<property name="argo.root.dir" value="../argouml-app" />
+		<property name="argo.root.dir" value="../argouml" />
 		<property name="argo.build.dir" value="${argo.root.dir}/build" />
 
 		<property name="result.jar" value="argouml-i18n-zh.jar" />
