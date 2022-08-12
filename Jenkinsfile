@@ -79,3 +79,4 @@ If these are all successful, it is scored as Verified."""
     failure { gerritReview labels: [Verified: -1], message: 'Build failed.' }
   }
 }
+art
